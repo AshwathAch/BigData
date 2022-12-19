@@ -1,0 +1,26 @@
+Database commands 
+
+create database s;
+describe database s;
+use s;
+alter database s set dbproperties('edited-by'='swetha');
+drop database s;
+
+Table commands 
+
+create table lab(name varchar(20),score int);
+insert into lab values('bigdata',100);
+select *from lab;
+alter table lab rename to Lab;
+drop table lab;
+
+View command 
+
+create view sampleeee as select *from employeeee where sal>500;
+
+Functions
+
+select max(sal) from employeeee;
+select min(sal) from employeeee;
+select avg(sal) from employeeee;
+select sum(sal) from employeeee;

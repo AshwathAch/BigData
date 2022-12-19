@@ -1,0 +1,15 @@
+mkdir mm
+cd mm
+export HADOOP_CLASSPATH=$(hadoop classpath)
+echo $HADOOP_CLASSPATH
+javac -classpath ${HADOOP_CLASSPATH} -d '/home/kct5thsemcdhid014/mm/classes' '/home/kct5thsemcdhid014/mm/matrixmultiplication.java'
+jar -cvf matrixmultiplication.jar -C '/home/kct5thsemcdhid014/mm/classes'/ .
+cd 
+hdfs dfs -mkdir /user/kct5thsemcdhid014/mm
+hdfs dfs -mkdir /user/kct5thsemcdhid014/mm/input
+hdfs dfs -mkdir /user/kct5thsemcdhid014/mm/output
+hdfs dfs -put '/home/kct5thsemcdhid014/mm/input.txt' '/user/kct5thsemcdhid014/mm/input'
+hdfs dfs -cat /user/kct5thsemcdhid014/mm/input/*
+cd mm
+hadoop jar '/home/kct5thsemcdhid014/mm/matrixmultiplication.jar' matrixmultiplication /user/kct5thsemcdhid014/mm/input /user/kct5thsemcdhid014/mm/output
+hdfs dfs -cat /user/kct5thsemcdhid014/mm/output/*
